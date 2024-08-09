@@ -13,7 +13,7 @@ class FlushCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'scout:flush {model : Class name of the model to flush}';
+    protected $signature = 'scout:flush {model : Class name of the model to flush} {--clear-cache : Clear the cache after flushing the model}';
 
     /**
      * The console command description.
@@ -36,5 +36,10 @@ class FlushCommand extends Command
         $model::removeAllFromSearch();
 
         $this->info('All ['.$class.'] records have been flushed.');
+
+        if ($clearCache) {
+            $this->call('cache:clear');
+            $this->info('Cache cleared successfully.');
+        }
     }
 }
