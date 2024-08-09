@@ -31,7 +31,7 @@ class FlushCommand extends Command
     {
         $class = $this->argument('model');
         $clearCache = $this->option('clear-cache');
-        
+
         $model = new $class;
 
         $model::removeAllFromSearch();
