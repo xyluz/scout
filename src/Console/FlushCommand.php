@@ -20,7 +20,7 @@ class FlushCommand extends Command
      *
      * @var string
      */
-    protected $description = "Flush all of the model's records from the index";
+    protected $description = "Flush all of the model's records from the index and optionally, clear cache";
 
     /**
      * Execute the console command.
@@ -30,7 +30,8 @@ class FlushCommand extends Command
     public function handle()
     {
         $class = $this->argument('model');
-
+        $clearCache = $this->option('clear-cache');
+        
         $model = new $class;
 
         $model::removeAllFromSearch();
